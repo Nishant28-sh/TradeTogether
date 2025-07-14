@@ -1,4 +1,4 @@
-# 🛒 E-Commerce Platform
+# TradeTogether
 
 A modern, full-featured E-Commerce platform with community, chat, gamification, and trade features. Built with React (frontend) and Node.js/Express (backend).
 
