@@ -1,0 +1,509 @@
+.mentorship-hub {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.mentorship-header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 30px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  color: white;
+}
+
+.mentorship-header h1 {
+  margin: 0 0 10px 0;
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.mentorship-header p {
+  margin: 0 0 20px 0;
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+.mentor-toggle-btn {
+  padding: 12px 24px;
+  border: 2px solid white;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.mentor-toggle-btn:hover,
+.mentor-toggle-btn.active {
+  background: white;
+  color: #667eea;
+}
+
+.mentorship-tabs {
+  display: flex;
+  border-bottom: 2px solid #eee;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.tab {
+  padding: 15px 25px;
+  border: none;
+  background: none;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-bottom: 3px solid transparent;
+  white-space: nowrap;
+}
+
+.tab:hover {
+  color: #667eea;
+}
+
+.tab.active {
+  color: #667eea;
+  border-bottom-color: #667eea;
+}
+
+.tab-content {
+  min-height: 500px;
+}
+
+/* Mentors Grid */
+.mentors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 20px;
+}
+
+.mentor-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  border: 1px solid #eee;
+}
+
+.mentor-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+}
+
+.mentor-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+
+.mentor-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mentor-info h3 {
+  margin: 0 0 5px 0;
+  color: #333;
+  font-size: 1.3rem;
+}
+
+.mentor-level {
+  color: #667eea;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+}
+
+.mentor-location {
+  color: #666;
+  margin: 0 0 10px 0;
+  font-size: 0.9rem;
+}
+
+.mentor-bio {
+  color: #555;
+  line-height: 1.5;
+  margin: 0 0 15px 0;
+  font-size: 0.9rem;
+}
+
+.mentor-skills {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+
+.skill-tag {
+  padding: 4px 12px;
+  background: #f0f2ff;
+  color: #667eea;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.mentor-stats {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.request-mentorship-btn {
+  width: 100%;
+  padding: 12px;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.request-mentorship-btn:hover {
+  background: #5a6fd8;
+}
+
+/* Mentees Grid */
+.mentees-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 20px;
+}
+
+.mentee-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid #eee;
+}
+
+.mentee-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+
+.mentee-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mentee-info h3 {
+  margin: 0 0 5px 0;
+  color: #333;
+  font-size: 1.3rem;
+}
+
+.mentee-level {
+  color: #667eea;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+}
+
+.mentee-location {
+  color: #666;
+  margin: 0 0 10px 0;
+  font-size: 0.9rem;
+}
+
+.mentee-bio {
+  color: #555;
+  line-height: 1.5;
+  margin: 0 0 15px 0;
+  font-size: 0.9rem;
+}
+
+.mentee-skills {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* Requests List */
+.requests-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.request-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid #eee;
+}
+
+.request-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.request-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.request-info h4 {
+  margin: 0 0 5px 0;
+  color: #333;
+}
+
+.request-info p {
+  margin: 0;
+  color: #667eea;
+  font-weight: 600;
+}
+
+.request-message {
+  margin-bottom: 20px;
+}
+
+.request-message p {
+  margin: 0 0 10px 0;
+  line-height: 1.5;
+}
+
+.request-skills {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.request-skills strong {
+  margin-right: 8px;
+}
+
+.request-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.accept-btn, .reject-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.accept-btn {
+  background: #4caf50;
+  color: white;
+}
+
+.accept-btn:hover {
+  background: #45a049;
+}
+
+.reject-btn {
+  background: #f44336;
+  color: white;
+}
+
+.reject-btn:hover {
+  background: #da190b;
+}
+
+/* Mentorships List */
+.mentorships-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.mentorship-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid #eee;
+}
+
+.mentorship-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 0;
+  background: none;
+  color: #333;
+}
+
+.mentorship-partners {
+  display: flex;
+  gap: 20px;
+}
+
+.partner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.partner img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.status {
+  padding: 6px 12px;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.status.active {
+  background: #e8f5e8;
+  color: #4caf50;
+}
+
+.status.completed {
+  background: #e3f2fd;
+  color: #2196f3;
+}
+
+.status.terminated {
+  background: #ffebee;
+  color: #f44336;
+}
+
+.mentorship-progress {
+  margin-bottom: 20px;
+}
+
+.mentorship-progress h4 {
+  margin: 0 0 10px 0;
+  color: #333;
+}
+
+.mentorship-progress ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.mentorship-progress li {
+  margin-bottom: 5px;
+  color: #555;
+}
+
+.mentorship-sessions h4 {
+  margin: 0 0 10px 0;
+  color: #333;
+}
+
+.sessions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.session-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: #f8f9fa;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.session-status {
+  padding: 4px 8px;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.session-status.scheduled {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.session-status.completed {
+  background: #d4edda;
+  color: #155724;
+}
+
+.session-status.cancelled {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.no-requests, .no-mentorships {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  padding: 40px;
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  font-size: 1.2rem;
+  color: #666;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .mentorship-tabs {
+    flex-direction: column;
+  }
+  
+  .tab {
+    text-align: center;
+  }
+  
+  .mentors-grid,
+  .mentees-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .mentorship-header {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+  
+  .mentorship-partners {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .request-actions {
+    flex-direction: column;
+  }
+  
+  .session-item {
+    flex-direction: column;
+    gap: 5px;
+    text-align: center;
+  }
+} 

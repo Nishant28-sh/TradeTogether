@@ -1,0 +1,99 @@
+/*
+.home-section {
+  height: 100vh;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlay {
+  text-align: center;
+  color: white;
+  max-width: 800px;
+  padding: 0 20px;
+  backdrop-filter: brightness(0.7);
+}
+
+.welcome-text {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  display: inline-block;
+  padding: 6px 18px;
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+.main-title {
+  font-size: 54px;
+  font-weight: bold;
+  margin: 14px 0;
+}
+
+.main-title span {
+  font-style: italic;
+  color: #ffcf83;
+}
+
+.description {
+  font-size: 20px;
+  margin: 25px 0;
+  line-height: 1.6;
+}
+
+.buttons {
+  margin-top: 30px;
+}
+
+.start-btn,
+.join-btn {
+  display: inline-flex;
+  align-items: center;
+  border: none;
+  padding: 12px 24px;
+  margin: 8px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.start-btn {
+  background: linear-gradient(to right, orange, #ffcf83);
+  color: white;
+}
+
+.join-btn {
+  background: #4caf50;
+  color: white;
+}
+
+.start-btn:hover,
+.join-btn:hover {
+  transform: scale(1.05);
+}
+
+.btn-icon {
+  margin-left: 8px;
+}
+
+.stats {
+  display: flex;
+  justify-content: center;
+  margin-top: 35px;
+  gap: 50px;
+}
+
+.stats h2 {
+  margin: 0;
+  font-size: 26px;
+}
+
+.stats p {
+  margin: 6px 0 0;
+  font-size: 14px;
+}
+*/
