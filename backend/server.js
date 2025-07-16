@@ -23,7 +23,12 @@ const io = new Server(server, {
 
 // Middleware setup
 app.use(cors({
-  origin: ["http://localhost:3000", "http://localhost:3001", "http://localhost:4000"],
+  origin: [
+    "https://tradetogether-frontend.onrender.com",
+    "http://localhost:3000",
+    "http://localhost:3001",
+    "http://localhost:4000"
+  ],
   credentials: true
 }));
 app.use(express.json());
