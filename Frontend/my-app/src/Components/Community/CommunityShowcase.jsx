@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { FaBullhorn, FaCheckCircle } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import { API_BASE_URL, BACKEND_BASE_URL } from '../../api';
 
-const API_URL = 'http://localhost:4000/api/feed/community-showcase';
+const API_URL = `${API_BASE_URL}/feed/community-showcase`;
 
 const badgeClass =
   'inline-block px-3 py-1 text-xs font-semibold rounded-full text-white bg-purple-600 mb-2';
@@ -14,9 +15,9 @@ const barterBadgeClass =
 const getImageUrl = (url) => {
   if (!url) return 'https://via.placeholder.com/100';
   if (url.startsWith('http')) return url; // Use as-is for Google URLs!
-  if (url.startsWith('/uploads')) return `http://localhost:4000${url}`;
+  if (url.startsWith('/uploads')) return `${BACKEND_BASE_URL}${url}`;
   // Assume it's a filename, so prepend /uploads/profilePhotos/
-  return `http://localhost:4000/uploads/profilePhotos/${url}`;
+  return `${BACKEND_BASE_URL}/uploads/profilePhotos/${url}`;
 };
 
 const CommunityShowcase = () => {

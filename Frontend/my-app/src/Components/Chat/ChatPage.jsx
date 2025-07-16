@@ -4,8 +4,7 @@ import { FaPaperPlane, FaUserCircle, FaComments, FaExclamationTriangle } from 'r
 import { useUser } from '../../UserContext';
 import notificationSound from '../../Components/Assets/notification-18-270129.mp3';
 import { useLocation } from 'react-router-dom';
-
-const API_BASE_URL = 'http://localhost:4000/api';
+import { API_BASE_URL } from '../../api';
 
 const getInitial = (nameOrEmail) => {
   if (!nameOrEmail) return '?';
@@ -35,6 +34,7 @@ const ChatPage = (props) => {
   const audioRef = useRef(null);
   const [toast, setToast] = useState(null);
   const toastTimeoutRef = useRef(null);
+  const [users, setUsers] = useState([]);
 
   // Play notification sound
   const playNotification = () => {
@@ -84,11 +84,17 @@ const ChatPage = (props) => {
   };
 
   useEffect(() => {
-    fetch(`${API_BASE_URL}/users/all`)
-      .then(res => res.json())
-      .then(data => setUserList(data.filter(u => u._id !== (user._id || user.id))))
-      .catch(() => setUserList([]));
-  }, [user]);
+    async function fetchUsers() {
+      try {
+        const res = await fetch(`${API_BASE_URL}/users/all`);
+        const data = await res.json();
+        setUsers(data);
+      } catch (err) {
+        // Optionally handle error
+      }
+    }
+    fetchUsers();
+  }, []);
 
   useEffect(() => {
     const newSocket = io('http://localhost:4000', {
@@ -237,7 +243,7 @@ const ChatPage = (props) => {
             )}
           </button>
           <div className="flex-1 overflow-y-auto mt-2">
-            {userList.map(u => {
+            {users.map(u => {
               const privateRoom = `trade_${props.product?._id || 'none'}_${[user._id || user.id, u._id].sort().join('_')}`;
               const hasUnread = unread.private[privateRoom] > 0;
               return (
