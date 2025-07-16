@@ -77,7 +77,7 @@ export default function ProductDetail() {
           </button>
         </div>
       </div>
-      </div>
+    </div>
     </div>
   );
 } 
