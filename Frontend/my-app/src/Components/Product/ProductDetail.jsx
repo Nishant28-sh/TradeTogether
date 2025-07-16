@@ -4,6 +4,13 @@ import axios from "axios";
 import { API_BASE_URL, BACKEND_BASE_URL } from "../../api";
 import { FaComments, FaArrowRight } from "react-icons/fa";
 
+const getImageUrl = (url) => {
+  if (!url) return 'https://via.placeholder.com/100';
+  if (url.startsWith('http')) return url;
+  if (url.startsWith('/uploads')) return `${BACKEND_BASE_URL}${url}`;
+  return `${BACKEND_BASE_URL}/uploads/${url}`;
+};
+
 export default function ProductDetail() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
@@ -33,7 +40,7 @@ export default function ProductDetail() {
       {/* Product Image */}
       <div className="relative h-56 bg-gray-100">
         {product.images && product.images.length > 0 ? (
-          <img src={BACKEND_BASE_URL + product.images[0]} alt={product.title} className="w-full h-full object-cover" />
+          <img src={getImageUrl(product.images[0])} alt={product.title} className="w-full h-full object-cover" />
         ) : (
           <div className="w-full h-full flex items-center justify-center text-gray-400 text-2xl">No Image</div>
         )}
