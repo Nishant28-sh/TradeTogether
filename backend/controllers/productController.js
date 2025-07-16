@@ -66,7 +66,21 @@ exports.updateProduct = async (req, res) => {
     const product = await Product.findById(req.params.id);
     if (!product) return res.status(404).json({ message: 'Product not found' });
     if (product.owner.toString() !== req.user.id) return res.status(403).json({ message: 'Unauthorized' });
-    Object.assign(product, req.body);
+
+    // Handle image update
+    if (req.file) {
+      product.images = [`/uploads/${req.file.filename}`];
+    } else if (req.body.images) {
+      // If images are sent in the body (e.g., for removing images)
+      product.images = req.body.images;
+    }
+
+    // Update other fields
+    product.title = req.body.title || product.title;
+    product.description = req.body.description || product.description;
+    product.value = req.body.value !== undefined ? Number(req.body.value) : product.value;
+    product.tags = req.body.tags || product.tags;
+
     await product.save();
     res.json(product);
   } catch (err) {
