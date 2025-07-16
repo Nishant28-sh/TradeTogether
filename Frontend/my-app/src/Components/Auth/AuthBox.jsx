@@ -20,7 +20,7 @@ export default function AuthBox({ onLogin }) {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('/api/users/login', loginForm);
+      const res = await axios.post(`${API_BASE_URL}/users/login`, loginForm);
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("userId", res.data.user._id);
       setMessage("Login successful!");
@@ -33,7 +33,7 @@ export default function AuthBox({ onLogin }) {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('/api/users/register', registerForm);
+      await axios.post(`${API_BASE_URL}/users/register`, registerForm);
       setMessage("Registration successful! Please login.");
       setMode("login");
     } catch (err) {
@@ -83,7 +83,7 @@ export default function AuthBox({ onLogin }) {
                     text="icon"
                     onSuccess={async (credentialResponse) => {
                       try {
-                        const res = await axios.post('/api/users/google-login', { token: credentialResponse.credential });
+                        const res = await axios.post(`${API_BASE_URL}/users/google-login`, { token: credentialResponse.credential });
                         localStorage.setItem("token", res.data.token);
                         localStorage.setItem("userId", res.data.user._id);
                         setMessage("Login successful!");
