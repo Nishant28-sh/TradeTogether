@@ -40,7 +40,7 @@ export default function ProductDetail() {
       {/* Product Image */}
       <div className="relative h-56 bg-gray-100">
         {product.images && product.images.length > 0 ? (
-          <img src={getImageUrl(product.images[0])} alt={product.title} className="w-full h-full object-cover" />
+          <img src={BACKEND_BASE_URL + product.images[0]} alt={product.title} className="w-full h-full object-cover" />
         ) : (
           <div className="w-full h-full flex items-center justify-center text-gray-400 text-2xl">No Image</div>
         )}
