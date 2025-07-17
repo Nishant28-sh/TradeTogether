@@ -97,7 +97,7 @@ const ChatPage = (props) => {
   }, []);
 
   useEffect(() => {
-    const newSocket = io('http://localhost:4000', {
+    const newSocket = io('wss://tradetogether-1.onrender.com', {
       reconnection: true,
       reconnectionAttempts: 10,
       reconnectionDelay: 1000,
