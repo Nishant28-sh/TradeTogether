@@ -1,4 +1,4 @@
-<img width="1907" height="921" alt="Screenshot 2025-07-18 204834" src="https://github.com/user-attachments/assets/cf60003f-e024-4f20-bfee-72ae2ce2e727" /># 🛒 TradeTogether — E-Commerce + Barter Platform
+## TradeTogether — E-Commerce + Barter Platform
 
 A modern full-featured **E-Commerce & Product Exchange Platform** that empowers users to buy, sell, **trade**, and engage in community-driven commerce. Features include real-time chat, gamification, barter system, user profiles, and admin management.
 
