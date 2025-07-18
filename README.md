@@ -48,6 +48,12 @@ TradeTogether/
 Backend API is hosted and integrated with the frontend via environment variables.
 
 ---
+## 📄 License
+This project is licensed under the MIT License – feel free to use and modify it!
 
+---
+## 👨‍💻 Author
+Nishant Sharma
+GitHub: @Nishant28-sh
 
 
