@@ -36,12 +36,14 @@ const CommunityDetail = () => {
   useEffect(() => {
     async function fetchRequests() {
       if (!community || !user) return;
-      const isAdmin = community.admins && community.admins.includes(user._id);
+      const userId = user.id || user._id;
+      const isAdmin = community.admins && community.admins.some(a => a._id?.toString() === userId || a.toString() === userId || a === userId);
       if (!isAdmin) return;
       setLoadingRequests(true);
       try {
-        const res = await axios.get(`${API_BASE_URL}/community/${id}/requests`, {
-          headers: { Authorization: `Bearer ${user.token}` }
+        const token = localStorage.getItem('token');
+        const res = await axios.get(`${API_BASE_URL}/communities/${id}/requests`, {
+          headers: { Authorization: `Bearer ${token}` }
         });
         setPendingRequests(res.data);
       } catch (err) {
@@ -56,8 +58,9 @@ const CommunityDetail = () => {
   const handleApprove = async (userId) => {
     setApproving(prev => ({ ...prev, [userId]: true }));
     try {
-      await axios.post(`${API_BASE_URL}/community/${id}/approve-request`, { userId }, {
-        headers: { Authorization: `Bearer ${user.token}` }
+      const token = localStorage.getItem('token');
+      await axios.post(`${API_BASE_URL}/communities/${id}/approve-request`, { userId }, {
+        headers: { Authorization: `Bearer ${token}` }
       });
       setPendingRequests(prev => prev.filter(u => u._id !== userId));
     } catch (err) {
@@ -92,7 +95,11 @@ const CommunityDetail = () => {
       : `http://localhost:4000/${community.image.replace(/^\\?uploads\\?/, 'uploads/')}`
     : '/default-image.png';
 
-  const isAdmin = user && community && community.admins && community.admins.includes(user._id);
+  const isAdmin = user && community && community.admins &&
+    community.admins.some(a => {
+      const adminId = a._id ? a._id.toString() : a.toString();
+      return adminId === (user.id || user._id);
+    });
   console.log('Logged in user:', user);
   console.log('Community admins:', community.admins);
   console.log('Is admin:', isAdmin);

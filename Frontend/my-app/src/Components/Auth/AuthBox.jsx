@@ -22,7 +22,8 @@ export default function AuthBox({ onLogin }) {
     try {
       const res = await axios.post(`${API_BASE_URL}/users/login`, loginForm);
       localStorage.setItem("token", res.data.token);
-      localStorage.setItem("userId", res.data.user._id);
+      localStorage.setItem("userId", res.data.user.id || res.data.user._id);
+      localStorage.setItem("user", JSON.stringify(res.data.user));
       setMessage("Login successful!");
       if (onLogin) onLogin(res.data.user);
     } catch (err) {
@@ -85,7 +86,8 @@ export default function AuthBox({ onLogin }) {
                       try {
                         const res = await axios.post(`${API_BASE_URL}/users/google-login`, { token: credentialResponse.credential });
                         localStorage.setItem("token", res.data.token);
-                        localStorage.setItem("userId", res.data.user._id);
+                        localStorage.setItem("userId", res.data.user.id || res.data.user._id);
+                        localStorage.setItem("user", JSON.stringify(res.data.user));
                         setMessage("Login successful!");
                         if (onLogin) onLogin(res.data.user);
                       } catch (err) {

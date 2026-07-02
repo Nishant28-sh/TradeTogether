@@ -94,7 +94,7 @@ exports.deleteProduct = async (req, res) => {
     const product = await Product.findById(req.params.id);
     if (!product) return res.status(404).json({ message: 'Product not found' });
     if (product.owner.toString() !== req.user.id) return res.status(403).json({ message: 'Unauthorized' });
-    await product.remove();
+    await Product.findByIdAndDelete(req.params.id);
     res.json({ message: 'Product deleted' });
   } catch (err) {
     res.status(500).json({ message: err.message });

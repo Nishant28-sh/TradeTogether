@@ -152,7 +152,7 @@ exports.getCommunityShowcase = async (req, res) => {
           { path: 'offeredProducts' },
           { path: 'requestedProducts' }
         ]),
-      User.find().sort({ ratings: -1 }).limit(4).select('name skills profileImage ratings'),
+      User.find().sort({ ratings: -1 }).limit(4).select('name skills profilePhoto ratings'),
       Product.find().sort({ updatedAt: -1 }).limit(8),
       Announcement.find({ 
         isActive: true,

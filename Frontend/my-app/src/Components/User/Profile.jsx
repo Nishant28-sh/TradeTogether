@@ -231,7 +231,7 @@ const Profile = () => {
                 <div key={product._id} className="bg-gray-50 rounded-xl overflow-hidden hover:shadow-lg transition-shadow duration-300">
                   {product.images && product.images.length > 0 ? (
                     <img 
-                      src={`${BACKEND_BASE_URL}${product.images[0]}`} 
+                      src={product.images[0].startsWith('http') ? product.images[0] : `${BACKEND_BASE_URL}${product.images[0]}`} 
                       alt={product.title} 
                       className="w-full h-48 object-cover" 
                     />
@@ -251,7 +251,7 @@ const Profile = () => {
                       ))}
                     </div>
                     <div className="text-lg font-bold text-green-600">
-                      {product.value ? `$${product.value}` : 'Trade Only'}
+                      {product.value ? `₹${product.value}` : 'Trade Only'}
                     </div>
                   </div>
                 </div>

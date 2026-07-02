@@ -27,9 +27,10 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const { user, setUser } = useUser();
-  const [showWelcome, setShowWelcome] = React.useState(true);
+  // Skip welcome screen if user is already logged in
+  const [showWelcome, setShowWelcome] = React.useState(!user);
 
-  if (showWelcome) {
+  if (showWelcome && !user) {
     return <WelcomeLanding onStart={() => setShowWelcome(false)} />;
   }
 

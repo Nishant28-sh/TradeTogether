@@ -12,6 +12,7 @@ const tradeSchema = new mongoose.Schema({
   offeredProducts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Product' }],
   requestedProducts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Product' }],
   cashComponent: { type: Number, default: 0 },
+  address: { type: String, default: '' },
   status: { type: String, enum: ['pending', 'accepted', 'declined', 'countered'], default: 'pending' },
   chatHistory: [messageSchema]
 }, { timestamps: true });

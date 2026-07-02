@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { API_BASE_URL } from '../../api';
+import { API_BASE_URL, BACKEND_BASE_URL } from '../../api';
 import { useNavigate } from 'react-router-dom';
 import { FaHeart, FaPlus, FaEye, FaTrash, FaBookmark, FaLightbulb } from 'react-icons/fa';
 
@@ -48,7 +48,8 @@ const Wishlist = () => {
     e.preventDefault();
     try {
       const token = localStorage.getItem('token');
-      await axios.post(`${API_BASE_URL}/users/wishlist`, newItem, {
+      // Use a dummy productId since wishlist items are standalone entries
+      await axios.post(`${API_BASE_URL}/users/wishlist/new-item`, newItem, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setNewItem({ title: '', description: '', category: '', priority: 'Medium', images: [] });
@@ -299,7 +300,7 @@ const Wishlist = () => {
                 {item.images && item.images.length > 0 && (
                   <div className="w-full h-40 mb-4 rounded-xl overflow-hidden bg-gray-100 flex items-center justify-center">
                     <img
-                      src={item.images[0].startsWith('/') ? `http://localhost:4000${item.images[0]}` : item.images[0]}
+                      src={item.images[0].startsWith('http') ? item.images[0] : `${BACKEND_BASE_URL}${item.images[0].startsWith('/') ? item.images[0] : '/' + item.images[0]}`}
                       alt={item.title}
                       className="object-cover w-full h-full"
                     />

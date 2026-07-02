@@ -77,13 +77,15 @@ function ProductList() {
       formData.append("description", form.description);
       formData.append("value", form.value);
       if (image) formData.append("image", image);
-      await axios.post(`${API_BASE_URL}/products`, formData, {
+      const res = await axios.post(`${API_BASE_URL}/products`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'multipart/form-data',
         }
       });
-      setProducts([...products]);
+      // Re-fetch the full products list to show the new product
+      const updatedProducts = await axios.get(`${API_BASE_URL}/products`);
+      setProducts(updatedProducts.data);
       setForm({ title: "", description: "", value: "" });
       setImage(null);
       setPreview(null);

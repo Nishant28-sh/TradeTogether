@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FaExchangeAlt, FaCheck, FaTimes, FaHandshake, FaClock, FaUser, FaMoneyBillWave, FaBox } from 'react-icons/fa';
 import axios from 'axios';
-import { API_BASE_URL } from '../../api';
+import { API_BASE_URL, BACKEND_BASE_URL } from '../../api';
 import { useUser } from '../../UserContext';
 import { toast } from 'react-toastify';
 
@@ -80,8 +80,8 @@ const TradeDashboard = () => {
   const getImageUrl = (imagePath) => {
     if (!imagePath) return '/logo192.png';
     if (imagePath.startsWith('http')) return imagePath;
-    const cleanPath = imagePath.replace(/^\\?uploads\\?/, 'uploads/').replace(/^\/+/, '');
-    return `http://localhost:4000/${cleanPath}`;
+    const cleanPath = imagePath.startsWith('/') ? imagePath : `/${imagePath}`;
+    return `${BACKEND_BASE_URL}${cleanPath}`;
   };
 
   const getStatusColor = (status) => {
@@ -192,7 +192,7 @@ const TradeDashboard = () => {
                     </span>
                   </div>
                   
-                  {trade.status === 'pending' && trade.receiver._id === user?.id && (
+                  {trade.status === 'pending' && trade.receiver._id?.toString() === (user?.id || user?._id) && (
                     <div className="flex gap-2">
                       <button
                         onClick={() => handleTradeAction(trade._id, 'accept')}
@@ -224,7 +224,7 @@ const TradeDashboard = () => {
                   <div>
                     <h4 className="font-semibold text-gray-700 mb-3 flex items-center gap-2">
                       <FaUser className="text-orange-500" />
-                      {trade.proposer._id === user?.id ? 'You Offered:' : `${trade.proposer.name} Offered:`}
+                      {trade.proposer._id?.toString() === (user?.id || user?._id) ? 'You Offered:' : `${trade.proposer.name} Offered:`}
                     </h4>
                     {trade.offeredProducts.length === 0 ? (
                       <div className="text-gray-500 text-sm">No products offered</div>
@@ -257,7 +257,7 @@ const TradeDashboard = () => {
                   <div>
                     <h4 className="font-semibold text-gray-700 mb-3 flex items-center gap-2">
                       <FaBox className="text-purple-500" />
-                      {trade.receiver._id === user?.id ? 'You Requested:' : `${trade.receiver.name} Requested:`}
+                      {trade.receiver._id?.toString() === (user?.id || user?._id) ? 'You Requested:' : `${trade.receiver.name} Requested:`}
                     </h4>
                     <div className="space-y-2">
                       {trade.requestedProducts.map(product => (

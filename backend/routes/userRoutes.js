@@ -31,9 +31,10 @@ const portfolioStorage = multer.diskStorage({
 const upload = multer({ storage });
 const portfolioUpload = multer({ storage: portfolioStorage });
 
-// Authentication routes
+// Authentication routes (must be before wildcard routes)
 router.post('/register', upload.single('profilePhoto'), userController.registerUser);
 router.post('/login', userController.loginUser);
+router.post('/google-login', userController.googleLogin);
 
 // Artisan features (specific route before parameter routes)
 router.get('/artisans', userController.getArtisans);
@@ -45,23 +46,27 @@ router.delete('/portfolio/:itemId', auth, userController.removePortfolioItem);
 // Get all users (for chat user list)
 router.get('/all', userController.getAllUsers);
 
-// Wishlist routes (must be before parameter routes)
-router.post('/wishlist/:productId', auth, userController.addToWishlist);
-router.get('/wishlist/:userId?', auth, userController.getWishlist);
-router.delete('/wishlist/:itemId', auth, userController.removeFromWishlist);
+// Search users
+router.get('/search', userController.searchUsers);
+
+// Update profile (must be before /:id)
+router.put('/profile', auth, userController.updateUserProfile);
 
 // Create inspiration board
 router.post('/inspiration-board', auth, userController.createInspirationBoard);
 
-// Add item to inspiration board
-router.post('/inspiration-board/:boardId', auth, userController.addToInspirationBoard);
+// Wishlist routes (must be before parameter routes)
+router.post('/wishlist/:productId', auth, userController.addToWishlist);
+router.get('/wishlist', auth, userController.getWishlist);
+router.delete('/wishlist/:itemId', auth, userController.removeFromWishlist);
 
-// Search users
-router.get('/search', userController.searchUsers);
+// Test route
+router.get('/test', (req, res) => {
+  res.json({ message: 'User route working!' });
+});
 
 // Profile routes (parameter routes last)
 router.get('/:id', userController.getUserProfile);
-router.put('/profile', auth, userController.updateUserProfile);
 router.post('/:id/upload-profile-photo', auth, upload.single('profilePhoto'), userController.uploadProfilePhoto);
 router.get('/:userId/portfolio', userController.getPortfolio);
 
@@ -84,10 +89,7 @@ router.get('/:userId/activity', userController.getUserActivity);
 router.post('/:userId/reviews', auth, userController.addReview);
 router.get('/:userId/reviews', userController.getUserReviews);
 
-router.post('/google-login', userController.googleLogin);
+// Add inspiration board item
+router.post('/inspiration-board/:boardId', auth, userController.addToInspirationBoard);
 
-router.get('/test', (req, res) => {
-  res.json({ message: 'User route working!' });
-});
-
-module.exports = router;
+module.exports = router;

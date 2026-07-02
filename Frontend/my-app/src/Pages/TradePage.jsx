@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { FaUserCircle, FaArrowLeft, FaComments, FaExchangeAlt, FaMoneyBillWave, FaCheck, FaTimes, FaHandshake } from 'react-icons/fa';
 import { useUser } from '../UserContext';
 import axios from 'axios';
-import { API_BASE_URL } from '../api';
+import { API_BASE_URL, BACKEND_BASE_URL } from '../api';
 import { toast } from 'react-toastify';
 
 const TradePage = () => {
@@ -102,8 +102,8 @@ const TradePage = () => {
   const getImageUrl = (imagePath) => {
     if (!imagePath) return '/logo192.png';
     if (imagePath.startsWith('http')) return imagePath;
-    const cleanPath = imagePath.replace(/^\\?uploads\\?/, 'uploads/').replace(/^\/+/, '');
-    return `http://localhost:4000/${cleanPath}`;
+    const cleanPath = imagePath.startsWith('/') ? imagePath : `/${imagePath}`;
+    return `${BACKEND_BASE_URL}${cleanPath}`;
   };
 
   if (loading) return (

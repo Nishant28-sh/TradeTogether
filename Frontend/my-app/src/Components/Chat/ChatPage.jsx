@@ -4,7 +4,7 @@ import { FaPaperPlane, FaUserCircle, FaComments, FaExclamationTriangle } from 'r
 import { useUser } from '../../UserContext';
 import notificationSound from '../../Components/Assets/notification-18-270129.mp3';
 import { useLocation } from 'react-router-dom';
-import { API_BASE_URL } from '../../api';
+import { API_BASE_URL, BACKEND_BASE_URL } from '../../api';
 
 const getInitial = (nameOrEmail) => {
   if (!nameOrEmail) return '?';
@@ -97,7 +97,7 @@ const ChatPage = (props) => {
   }, []);
 
   useEffect(() => {
-    const newSocket = io('wss://tradetogether-1.onrender.com', {
+    const newSocket = io(BACKEND_BASE_URL, {
       reconnection: true,
       reconnectionAttempts: 10,
       reconnectionDelay: 1000,

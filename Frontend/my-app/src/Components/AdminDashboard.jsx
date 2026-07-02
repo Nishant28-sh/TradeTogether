@@ -21,11 +21,15 @@ export default function AdminDashboard() {
     try {
       const token = localStorage.getItem('token');
       if (!token) {
-        navigate('/login');
+        navigate('/');
         return;
       }
 
-      const response = await axios.get('/api/users/profile', {
+      // Decode JWT to get userId without additional API call
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      const userId = payload.id;
+
+      const response = await axios.get(`http://localhost:4000/api/users/${userId}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
 
@@ -34,7 +38,7 @@ export default function AdminDashboard() {
         return;
       }
     } catch (error) {
-      navigate('/login');
+      navigate('/');
     }
   };
 
